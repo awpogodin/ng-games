@@ -22,24 +22,16 @@ export class GamesService {
   constructor() {
   }
 
-  public games: Game[] = [
-    {
-      id: 1,
-      name: 'GTA 5',
-      developer: 'Rockstar Games',
-      platforms: 'PC, XBOXONE, PS4, XBOX360, PS3',
-    },
-    {
-      id: 2,
-      name: 'RDR 2',
-      developer: 'Rockstar Games',
-      platforms: 'PC, XBOXONE, PS4',
-    },
-  ];
+  public games: Game[] = [];
+
+  getGamesFromLocalStorage() {
+    this.games = JSON.parse(localStorage.getItem('games')) || [];
+  }
 
   addGame(game: Game): boolean {
     if (isValid(game)) {
       this.games.push(game);
+      localStorage.setItem('games', JSON.stringify(this.games));
       return true;
     }
     return false;

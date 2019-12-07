@@ -14,6 +14,7 @@ export class GamesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.gamesService.getGamesFromLocalStorage();
   }
 
   removeGame(id: number) {

@@ -1,0 +1,22 @@
+<!--suppress HtmlFormInputWithoutLabel -->
+<div class="filter">
+  <input
+    class="filter__input"
+    type="text"
+    placeholder="Поиск по названию"
+    [(ngModel)]="searchString"
+  >
+</div>
+
+<div *ngIf="gamesService.games.length; else noGames">
+  <div class="game-card" *ngFor="let game of gamesService.games | gamesFilter: searchString">
+    <h1 class="game-card__title js-game-title">{{game.name}}</h1>
+    <h3 class="game-card__developer js-game-developer">{{game.developer}}</h3>
+    <h3 class="game-card__platforms js-game-platforms">{{game.platforms}}</h3>
+    <button (click)="removeGame(game.id)" class="game-card__del-btn">Удалить</button>
+  </div>
+</div>
+
+<ng-template #noGames>
+  <p class="game-card__no-games">Игр не найдено!</p>
+</ng-template>

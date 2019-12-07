@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.game-card {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(33, 33, 33, 0.3);
+}
+
+.game-card__title {
+  font-weight: 100;
+}
+
+.game-card__developer {
+  font-weight: 300;
+}
+
+.game-card__platforms {
+  font-weight: 300;
+}
+
+.game-card__no-games {
+  text-align: center;
+  color: #212121;
+}
+
+.game-card__del-btn {
+  display: block;
+  margin: 10px auto;
+  font-size: 16px;
+  border: none;
+  background: none;
+  color: #f44336;
+  cursor: pointer;
+  transition: all linear 0.3s;
+
+  &:hover {
+    color: #b71c1c;
+  }
+}
+
+.filter__input {
+  display: block;
+  box-sizing: border-box;
+  margin: 15px 0;
+  width: 100%;
+  border: 1px solid #E0E0E0;
+  padding: 10px 15px;
+  color: #000;
+  background: #fff;
+  transition-duration: 0.5s;
+
+  &::placeholder {
+    color: #E0E0E0;
+  }
+
+  &:hover {
+    border: 1px solid #212121;
+  }
+
+  &:focus {
+    border: 1px solid #212121;
+  }
+}

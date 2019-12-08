@@ -1,7 +1,7 @@
 <!--suppress HtmlFormInputWithoutLabel -->
 <div class="game-card">
-  <h1 class="game-card__title js-game-title">{{name}}</h1>
-  <h3 class="game-card__developer js-game-developer">{{developer}}</h3>
-  <h3 class="game-card__platforms js-game-platforms">{{platforms}}</h3>
+  <h1 class="game-card__title js-game-title">{{game.name}}</h1>
+  <h3 class="game-card__developer js-game-developer">{{game.developer}}</h3>
+  <h3 class="game-card__platforms js-game-platforms">{{game.platforms}}</h3>
   <button (click)="onDelete()" class="game-card__del-btn">Удалить</button>
 </div>

@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Game} from './shared/game.interface';
 
-export interface Game {
-  id: number;
-  name: string;
-  developer: string;
-  platforms: string;
-}
+const GAMES = 'games';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +9,21 @@ export interface Game {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public searchString = '';
+  searchString = '';
 
-  public games: Game[];
+  games: Game[];
 
   ngOnInit(): void {
-    this.games = JSON.parse(localStorage.getItem('games')) || [];
+    this.games = JSON.parse(localStorage.getItem(GAMES)) || [];
   }
 
   addGame(game: Game): void {
     this.games.push(game);
-    localStorage.setItem('games', JSON.stringify(this.games));
+    localStorage.setItem(GAMES, JSON.stringify(this.games));
   }
 
   deleteGame(id: number): void {
     this.games = this.games.filter(g => g.id !== id);
-    localStorage.setItem('games', JSON.stringify(this.games));
+    localStorage.setItem(GAMES, JSON.stringify(this.games));
   }
 }

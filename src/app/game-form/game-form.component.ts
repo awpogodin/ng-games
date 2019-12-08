@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {Game} from '../app.component';
+import {Game} from '../shared/game.interface';
 
 @Component({
   selector: 'app-game-form',
@@ -15,17 +15,15 @@ export class GameFormComponent {
   @Output()
   add = new EventEmitter<Game>();
 
-  isValid(data: Game): boolean {
-    const {name, developer, platforms} = data;
+  private static isFieldValid(item: string): boolean {
+    return !!item.trim();
+  }
 
-    function isFieldValid(item: string): boolean {
-      return !!item.trim();
-    }
-
+  private static isValid({name, developer, platforms}: Game): boolean {
     return (
-      isFieldValid(name) &&
-      isFieldValid(developer) &&
-      isFieldValid(platforms)
+      GameFormComponent.isFieldValid(name) &&
+      GameFormComponent.isFieldValid(developer) &&
+      GameFormComponent.isFieldValid(platforms)
     );
   }
 
@@ -36,7 +34,7 @@ export class GameFormComponent {
       developer: this.developer,
       platforms: this.platforms
     };
-    if (this.isValid(game)) {
+    if (GameFormComponent.isValid(game)) {
       this.name = '';
       this.developer = '';
       this.platforms = '';

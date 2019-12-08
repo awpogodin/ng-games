@@ -1,26 +1,26 @@
 <!--suppress HtmlFormInputWithoutLabel -->
 <div class="game-form">
   <input
-    (keydown.enter)="addGame()"
+    (keydown.enter)="onAddClick()"
     [(ngModel)]="name"
     class="game-form__input"
     placeholder="Название игры"
     type="text"
   />
   <input
-    (keydown.enter)="addGame()"
+    (keydown.enter)="onAddClick()"
     [(ngModel)]="developer"
     class="game-form__input"
     placeholder="Разработчик"
     type="text"
   />
   <input
-    (keydown.enter)="addGame()"
+    (keydown.enter)="onAddClick()"
     [(ngModel)]="platforms"
     class="game-form__input"
     placeholder="Платформы"
     type="text"
   />
   <p class="game-form__error-msg">{{ error }}</p>
-  <button (click)="addGame()" class="game-form__add-btn">Добавить</button>
+  <button (click)="onAddClick()" class="game-form__add-btn">Добавить</button>
 </div>

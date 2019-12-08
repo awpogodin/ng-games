@@ -28,11 +28,6 @@
   font-weight: 300;
 }
 
-.game-card__no-games {
-  text-align: center;
-  color: #212121;
-}
-
 .game-card__del-btn {
   display: block;
   margin: 10px auto;
@@ -48,26 +43,3 @@
   }
 }
 
-.filter__input {
-  display: block;
-  box-sizing: border-box;
-  margin: 15px 0;
-  width: 100%;
-  border: 1px solid #E0E0E0;
-  padding: 10px 15px;
-  color: #000;
-  background: #fff;
-  transition-duration: 0.5s;
-
-  &::placeholder {
-    color: #E0E0E0;
-  }
-
-  &:hover {
-    border: 1px solid #212121;
-  }
-
-  &:focus {
-    border: 1px solid #212121;
-  }
-}

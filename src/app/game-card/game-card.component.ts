@@ -1,23 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {GamesService} from '../shared/games.service';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-game-card',
   templateUrl: './game-card.component.html',
   styleUrls: ['./game-card.component.scss']
 })
-export class GameCardComponent implements OnInit {
+export class GameCardComponent {
 
-  private searchString = '';
+  @Input() name: string;
+  @Input() developer: string;
+  @Input() platforms: string;
 
-  constructor(private gamesService: GamesService) {
-  }
+  @Output() delete = new EventEmitter<void>();
 
-  ngOnInit() {
-    this.gamesService.getGamesFromLocalStorage();
-  }
-
-  removeGame(id: number) {
-    this.gamesService.removeGame(id);
+  onDelete(): void {
+    this.delete.emit();
   }
 }

@@ -1,5 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Game} from './games.service';
+import {Game} from '../app.component';
+
 
 @Pipe({
   name: 'gamesFilter'

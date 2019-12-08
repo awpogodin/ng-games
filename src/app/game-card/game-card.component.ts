@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {GamesService} from '../shared/games.service';
 
 @Component({
-  selector: 'app-games',
-  templateUrl: './games.component.html',
-  styleUrls: ['./games.component.scss']
+  selector: 'app-game-card',
+  templateUrl: './game-card.component.html',
+  styleUrls: ['./game-card.component.scss']
 })
-export class GamesComponent implements OnInit {
+export class GameCardComponent implements OnInit {
 
   private searchString = '';
 

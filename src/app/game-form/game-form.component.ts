@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Game, GamesService} from '../shared/games.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {Game, GamesService} from '../shared/games.service';
   templateUrl: './game-form.component.html',
   styleUrls: ['./game-form.component.scss']
 })
-export class GameFormComponent implements OnInit {
+export class GameFormComponent {
   name = '';
   developer = '';
   platforms = '';
@@ -14,9 +14,6 @@ export class GameFormComponent implements OnInit {
   error = '';
 
   constructor(private gamesService: GamesService) {
-  }
-
-  ngOnInit() {
   }
 
   addGame() {

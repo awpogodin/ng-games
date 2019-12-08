@@ -1,4 +1,7 @@
 # Angular App - NgGames
+[DEMO](https://sad-galileo-695a49.netlify.com/ "DEMO")
+
+[![DEMO](https://i.imgur.com/jpAzFD1.png "DEMO")](https://sad-galileo-695a49.netlify.com/ "DEMO")
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 

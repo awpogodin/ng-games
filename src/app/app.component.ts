@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 export interface Game {
   id: number;
@@ -12,10 +12,14 @@ export interface Game {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public searchString = '';
 
-  public games: Game[] = JSON.parse(localStorage.getItem('games')) || [];
+  public games: Game[];
+
+  ngOnInit(): void {
+    this.games = JSON.parse(localStorage.getItem('games')) || [];
+  }
 
   addGame(game: Game): void {
     this.games.push(game);

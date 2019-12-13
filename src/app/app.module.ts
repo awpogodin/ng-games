@@ -2,23 +2,45 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {GameCardComponent} from './game-card/game-card.component';
-import {GameFormComponent} from './game-form/game-form.component';
+import {GameCardComponent} from './components/game-card/game-card.component';
+import {GamesAddComponent} from './components/games-add/games-add.component';
 import {FormsModule} from '@angular/forms';
 import {GamesFilterPipe} from './shared/games-filter.pipe';
+import {RouterModule, Routes} from '@angular/router';
+import {GamesListComponent} from './components/games-list/games-list.component';
+import {HeaderComponent} from './components/header/header.component';
+
+const routes: Routes = [
+  {
+    path: 'games/add',
+    component: GamesAddComponent
+  },
+  {
+    path: 'games',
+    component: GamesListComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/games'
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     GameCardComponent,
-    GameFormComponent,
-    GamesFilterPipe
+    GamesAddComponent,
+    GamesFilterPipe,
+    GamesListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

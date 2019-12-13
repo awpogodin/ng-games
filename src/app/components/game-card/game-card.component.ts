@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Game} from '../shared/game.interface';
+import {Game} from '../../shared/game.interface';
 
 @Component({
   selector: 'app-game-card',

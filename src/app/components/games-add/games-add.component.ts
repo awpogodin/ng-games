@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {Game} from '../shared/game.interface';
+import {Game} from '../../shared/game.interface';
 
 @Component({
   selector: 'app-game-form',
-  templateUrl: './game-form.component.html',
-  styleUrls: ['./game-form.component.scss']
+  templateUrl: './games-add.component.html',
+  styleUrls: ['./games-add.component.scss']
 })
-export class GameFormComponent {
+export class GamesAddComponent {
   name = '';
   developer = '';
   platforms = '';
@@ -21,9 +21,9 @@ export class GameFormComponent {
 
   private static isValid({name, developer, platforms}: Game): boolean {
     return (
-      GameFormComponent.isFieldValid(name) &&
-      GameFormComponent.isFieldValid(developer) &&
-      GameFormComponent.isFieldValid(platforms)
+      GamesAddComponent.isFieldValid(name) &&
+      GamesAddComponent.isFieldValid(developer) &&
+      GamesAddComponent.isFieldValid(platforms)
     );
   }
 
@@ -34,7 +34,7 @@ export class GameFormComponent {
       developer: this.developer,
       platforms: this.platforms
     };
-    if (GameFormComponent.isValid(game)) {
+    if (GamesAddComponent.isValid(game)) {
       this.name = '';
       this.developer = '';
       this.platforms = '';

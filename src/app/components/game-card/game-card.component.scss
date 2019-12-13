@@ -17,7 +17,15 @@
 }
 
 .game-card__title {
+  color: #212121;
+  font-size: 24px;
   font-weight: 100;
+  text-decoration: none;
+  transition-duration: 2s;
+
+  &:hover {
+    color: #3F51B5;
+  }
 }
 
 .game-card__developer {

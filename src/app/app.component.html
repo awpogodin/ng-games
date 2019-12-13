@@ -1,26 +1,5 @@
-<!--suppress HtmlFormInputWithoutLabel -->
 <div class="app">
-  <app-game-form (add)="addGame($event)"></app-game-form>
+  <app-header></app-header>
   <hr>
-  <div class="filter">
-    <input
-      class="filter__input"
-      type="text"
-      placeholder="Поиск по названию"
-      [(ngModel)]="searchString"
-    >
-  </div>
-  <div *ngIf="games.length; else noGames">
-    <app-game-card
-      *ngFor="let game of games | gamesFilter: searchString"
-      [game]="game"
-      (delete)="deleteGame(game.id)"
-    >
-    </app-game-card>
-  </div>
-
-  <ng-template #noGames>
-    <p class="app__no-games">Игр не найдено!</p>
-  </ng-template>
-
+  <router-outlet></router-outlet>
 </div>

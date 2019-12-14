@@ -1,16 +1,8 @@
 <!--suppress HtmlFormInputWithoutLabel -->
-<div class="filter">
-  <input
-    [(ngModel)]="searchString"
-    class="filter__input"
-    placeholder="Поиск по названию"
-    type="text"
-  >
-</div>
 <div *ngIf="games.length; else noGames">
   <app-game-card
     (delete)="deleteGame(game.id)"
-    *ngFor="let game of games | gamesFilter: searchString"
+    *ngFor="let game of games | gamesFilter: search"
     [game]="game"
   >
   </app-game-card>

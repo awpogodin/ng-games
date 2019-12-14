@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GameModel} from '../../models/game.model';
 import {RestApiService} from '../../shared/rest-api.service';
 import {ActivatedRoute} from '@angular/router';
+import {Unsubscribable} from 'rxjs';
 
 @Component({
   selector: 'app-games-list',
@@ -9,15 +10,19 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./games-list.component.scss']
 })
 export class GamesListComponent implements OnInit {
-  searchString = '';
-
   games: GameModel[] = [];
+  private search: string;
+
+  private subscription: Unsubscribable;
 
   constructor(public restApiService: RestApiService, public route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.loadGames();
+    this.subscription = this.route.queryParamMap.subscribe(params => {
+      this.search = params.get('search') || '';
+      this.loadGames();
+    });
   }
 
   deleteGame(id: string): void {

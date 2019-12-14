@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 import {GameModel} from '../../models/game.model';
+import {RestApiService} from '../../shared/rest-api.service';
+import {Router} from '@angular/router';
+import {GameValidator} from '../../shared/game-validator';
 
 @Component({
   selector: 'app-game-form',
@@ -12,30 +15,20 @@ export class GamesAddComponent {
   platforms = '';
   error = '';
 
-  private static isFieldValid(item: string): boolean {
-    return !!item.trim();
+  constructor(public restApiService: RestApiService, public router: Router) {
   }
 
-  private static isValid({name, developer, platforms}: GameModel): boolean {
-    return (
-      GamesAddComponent.isFieldValid(name) &&
-      GamesAddComponent.isFieldValid(developer) &&
-      GamesAddComponent.isFieldValid(platforms)
-    );
-  }
-
-  onAddClick(): void {
+  addGame(): void {
     const game: GameModel = {
       name: this.name,
       developer: this.developer,
       platforms: this.platforms
     };
-    if (GamesAddComponent.isValid(game)) {
-      this.name = '';
-      this.developer = '';
-      this.platforms = '';
-      this.error = '';
-      // this.add.emit(game);
+    if (GameValidator.isValid(game)) {
+      this.restApiService.addGame(game).subscribe(() => {
+        console.log('Created');
+        this.router.navigate(['/games']);
+      });
     } else {
       this.error = 'Введены неверные данные';
     }

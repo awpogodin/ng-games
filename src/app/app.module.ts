@@ -10,11 +10,16 @@ import {RouterModule, Routes} from '@angular/router';
 import {GamesListComponent} from './components/games-list/games-list.component';
 import {HeaderComponent} from './components/header/header.component';
 import {HttpClientModule} from '@angular/common/http';
+import {GameEditComponent} from './components/game-edit/game-edit.component';
 
 const routes: Routes = [
   {
     path: 'games/add',
     component: GamesAddComponent
+  },
+  {
+    path: 'games/:id',
+    component: GameEditComponent
   },
   {
     path: 'games',
@@ -33,7 +38,8 @@ const routes: Routes = [
     GamesAddComponent,
     GamesFilterPipe,
     GamesListComponent,
-    HeaderComponent
+    HeaderComponent,
+    GameEditComponent
   ],
   imports: [
     BrowserModule,

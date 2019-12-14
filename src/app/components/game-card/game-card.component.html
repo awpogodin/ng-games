@@ -3,5 +3,8 @@
   <a [routerLink]="'/games/' + game.id" class="game-card__title js-game-title">{{game.name}}</a>
   <h3 class="game-card__developer js-game-developer">{{game.developer}}</h3>
   <h3 class="game-card__platforms js-game-platforms">{{game.platforms}}</h3>
-  <button (click)="onDelete()" class="game-card__del-btn">Удалить</button>
+  <div class="game-card__btns">
+    <button (click)="onEdit(game.id)" class="btns__edit-btn">Изменить</button>
+    <button (click)="onDelete()" class="btns__del-btn">Удалить</button>
+  </div>
 </div>

@@ -27,9 +27,8 @@ export class GamesListComponent implements OnInit {
   }
 
   private loadGames(): void {
-    this.restApiService.getGames().subscribe(res => {
-      console.log(res);
-      this.games = res;
+    this.restApiService.getGames().subscribe(games => {
+      this.games = games;
     });
   }
 }

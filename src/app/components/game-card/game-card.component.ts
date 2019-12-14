@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {GameModel} from '../../models/game.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-game-card',
@@ -12,7 +13,14 @@ export class GameCardComponent {
 
   @Output() delete = new EventEmitter<void>();
 
+  constructor(public router: Router) {
+  }
+
   onDelete(): void {
     this.delete.emit();
+  }
+
+  onEdit(id: string) {
+    this.router.navigate([`/games/${id}`]);
   }
 }

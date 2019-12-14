@@ -2,7 +2,7 @@
 <div *ngIf="games.length; else noGames">
   <app-game-card
     (delete)="deleteGame(game.id)"
-    *ngFor="let game of games | gamesFilter: search"
+    *ngFor="let game of games"
     [game]="game"
   >
   </app-game-card>

@@ -21,19 +21,21 @@ export class GamesListComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.route.queryParamMap.subscribe(params => {
       this.search = params.get('search') || '';
-      this.loadGames();
+      this.loadGames(this.search);
     });
   }
 
   deleteGame(id: string): void {
     this.restApiService.deleteGame(id).subscribe(() => {
-      this.loadGames();
+      this.loadGames(this.search);
     });
   }
 
-  private loadGames(): void {
+  private loadGames(search: string = ''): void {
     this.restApiService.getGames().subscribe(games => {
-      this.games = games;
+      this.games = games.filter(game => {
+        return game.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+      });
     });
   }
 }

@@ -1,0 +1,11 @@
+<!--suppress HtmlFormInputWithoutLabel -->
+<div class="filter">
+  <input
+    (keyup)="onSubmit()"
+    (keyup.enter)="onSubmit()"
+    [(ngModel)]="search"
+    class="filter__input"
+    placeholder="Поиск..."
+    type="text"
+  >
+</div>

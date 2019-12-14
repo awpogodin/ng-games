@@ -11,6 +11,7 @@ import {GamesListComponent} from './components/games-list/games-list.component';
 import {HeaderComponent} from './components/header/header.component';
 import {HttpClientModule} from '@angular/common/http';
 import {GameEditComponent} from './components/game-edit/game-edit.component';
+import {GamesSearchComponent} from './components/games-search/games-search.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,8 @@ const routes: Routes = [
     GamesFilterPipe,
     GamesListComponent,
     HeaderComponent,
-    GameEditComponent
+    GameEditComponent,
+    GamesSearchComponent
   ],
   imports: [
     BrowserModule,

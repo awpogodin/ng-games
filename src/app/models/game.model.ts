@@ -1,5 +1,5 @@
-export interface Game {
-  id: number;
+export interface GameModel {
+  id?: string;
   name: string;
   developer: string;
   platforms: string;

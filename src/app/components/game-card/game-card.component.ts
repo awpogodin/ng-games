@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Game} from '../../shared/game.interface';
+import {GameModel} from '../../models/game.model';
 
 @Component({
   selector: 'app-game-card',
@@ -8,7 +8,7 @@ import {Game} from '../../shared/game.interface';
 })
 export class GameCardComponent {
 
-  @Input() game: Game;
+  @Input() game: GameModel;
 
   @Output() delete = new EventEmitter<void>();
 

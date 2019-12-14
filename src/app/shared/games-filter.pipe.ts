@@ -1,12 +1,12 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Game} from './game.interface';
+import {GameModel} from '../models/game.model';
 
 
 @Pipe({
   name: 'gamesFilter'
 })
 export class GamesFilterPipe implements PipeTransform {
-  transform(games: Game[], search: string = ''): Game[] {
+  transform(games: GameModel[], search: string = ''): GameModel[] {
     if (!search.trim()) {
       return games;
     }

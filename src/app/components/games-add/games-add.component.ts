@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {Game} from '../../shared/game.interface';
+import {Component} from '@angular/core';
+import {GameModel} from '../../models/game.model';
 
 @Component({
   selector: 'app-game-form',
@@ -12,14 +12,11 @@ export class GamesAddComponent {
   platforms = '';
   error = '';
 
-  @Output()
-  add = new EventEmitter<Game>();
-
   private static isFieldValid(item: string): boolean {
     return !!item.trim();
   }
 
-  private static isValid({name, developer, platforms}: Game): boolean {
+  private static isValid({name, developer, platforms}: GameModel): boolean {
     return (
       GamesAddComponent.isFieldValid(name) &&
       GamesAddComponent.isFieldValid(developer) &&
@@ -28,8 +25,7 @@ export class GamesAddComponent {
   }
 
   onAddClick(): void {
-    const game: Game = {
-      id: Date.now(),
+    const game: GameModel = {
       name: this.name,
       developer: this.developer,
       platforms: this.platforms
@@ -39,7 +35,7 @@ export class GamesAddComponent {
       this.developer = '';
       this.platforms = '';
       this.error = '';
-      this.add.emit(game);
+      // this.add.emit(game);
     } else {
       this.error = 'Введены неверные данные';
     }

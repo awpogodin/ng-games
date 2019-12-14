@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Game} from './shared/game.interface';
+import {GameModel} from './models/game.model';
 
 const GAMES = 'games';
 
@@ -11,18 +11,18 @@ const GAMES = 'games';
 export class AppComponent implements OnInit {
   searchString = '';
 
-  games: Game[];
+  games: GameModel[];
 
   ngOnInit(): void {
     this.games = JSON.parse(localStorage.getItem(GAMES)) || [];
   }
 
-  addGame(game: Game): void {
+  addGame(game: GameModel): void {
     this.games.push(game);
     localStorage.setItem(GAMES, JSON.stringify(this.games));
   }
 
-  deleteGame(id: number): void {
+  deleteGame(id: string): void {
     this.games = this.games.filter(g => g.id !== id);
     localStorage.setItem(GAMES, JSON.stringify(this.games));
   }

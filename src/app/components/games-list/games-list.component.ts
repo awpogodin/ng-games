@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Game} from '../../shared/game.interface';
-
-const GAMES = 'games';
+import {GameModel} from '../../models/game.model';
+import {RestApiService} from '../../shared/rest-api.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-games-list',
@@ -11,19 +11,25 @@ const GAMES = 'games';
 export class GamesListComponent implements OnInit {
   searchString = '';
 
-  games: Game[];
+  games: GameModel[] = [];
+
+  constructor(public restApiService: RestApiService, public route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
-    this.games = JSON.parse(localStorage.getItem(GAMES)) || [];
+    this.loadGames();
   }
 
-  addGame(game: Game): void {
-    this.games.push(game);
-    localStorage.setItem(GAMES, JSON.stringify(this.games));
+  deleteGame(id: string): void {
+    this.restApiService.deleteGame(id).subscribe(() => {
+      this.loadGames();
+    });
   }
 
-  deleteGame(id: number): void {
-    this.games = this.games.filter(g => g.id !== id);
-    localStorage.setItem(GAMES, JSON.stringify(this.games));
+  private loadGames(): void {
+    this.restApiService.getGames().subscribe(res => {
+      console.log(res);
+      this.games = res;
+    });
   }
 }

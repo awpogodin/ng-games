@@ -9,6 +9,7 @@ import {GamesFilterPipe} from './shared/games-filter.pipe';
 import {RouterModule, Routes} from '@angular/router';
 import {GamesListComponent} from './components/games-list/games-list.component';
 import {HeaderComponent} from './components/header/header.component';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

@@ -17,7 +17,7 @@ export class RestApiService {
   };
   // Define API
 
-  private apiURL = 'https://pogodin-apigames.herokuapp.com/api/games/';
+  private apiURL = '/api/games/';
   private errorMessage: string;
 
   constructor(private httpClient: HttpClient) {

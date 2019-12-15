@@ -1,2 +1,1 @@
-# Invisibly proxy to a third party API
 /api/*  https://pogodin-apigames.herokuapp.com/:splat  200

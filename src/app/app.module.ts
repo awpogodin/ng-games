@@ -5,7 +5,6 @@ import {AppComponent} from './app.component';
 import {GameCardComponent} from './components/game-card/game-card.component';
 import {GamesAddComponent} from './components/games-add/games-add.component';
 import {FormsModule} from '@angular/forms';
-import {GamesFilterPipe} from './shared/games-filter.pipe';
 import {RouterModule, Routes} from '@angular/router';
 import {GamesListComponent} from './components/games-list/games-list.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -37,7 +36,6 @@ const routes: Routes = [
     AppComponent,
     GameCardComponent,
     GamesAddComponent,
-    GamesFilterPipe,
     GamesListComponent,
     HeaderComponent,
     GameEditComponent,

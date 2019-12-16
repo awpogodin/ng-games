@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GameModel} from '../../models/game.model';
-import {RestApiService} from '../../shared/rest-api.service';
+import {RestApiService} from '../../shared/services/rest-api.service';
 import {ActivatedRoute} from '@angular/router';
 import {Unsubscribable} from 'rxjs';
 

@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {RestApiService} from '../../shared/rest-api.service';
+import {RestApiService} from '../../shared/services/rest-api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {Unsubscribable} from 'rxjs';
 import {GameModel} from '../../models/game.model';
-import {GameValidator} from '../../shared/game.validator';
+import {GameValidator} from '../../shared/validators/game.validator';
 
 @Component({
   selector: 'app-game-edit',

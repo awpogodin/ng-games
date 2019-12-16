@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, retry} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
-import {GameModel} from '../models/game.model';
+import {GameModel} from '../../models/game.model';
+
+const API = '/api/games/';
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +17,13 @@ export class RestApiService {
       'Content-Type': 'application/json'
     })
   };
-  // Define API
-
-  private apiURL = '/api/games/';
-  private errorMessage: string;
 
   constructor(private httpClient: HttpClient) {
   }
 
   // CRUD
   getGames(): Observable<GameModel[]> {
-    return this.httpClient.get<GameModel[]>(this.apiURL)
+    return this.httpClient.get<GameModel[]>(API)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -33,7 +31,7 @@ export class RestApiService {
   }
 
   getGame(id: string): Observable<GameModel> {
-    return this.httpClient.get<GameModel>(this.apiURL + id)
+    return this.httpClient.get<GameModel>(API + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -41,7 +39,7 @@ export class RestApiService {
   }
 
   addGame(game: GameModel): Observable<GameModel> {
-    return this.httpClient.post<GameModel>(this.apiURL, JSON.stringify(game), this.httpOptions)
+    return this.httpClient.post<GameModel>(API, JSON.stringify(game), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -49,7 +47,7 @@ export class RestApiService {
   }
 
   updateGame(id: string, game: GameModel): Observable<GameModel> {
-    return this.httpClient.patch<GameModel>(this.apiURL + id, JSON.stringify(game), this.httpOptions)
+    return this.httpClient.patch<GameModel>(API + id, JSON.stringify(game), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -57,7 +55,7 @@ export class RestApiService {
   }
 
   deleteGame(id: string): Observable<GameModel> {
-    return this.httpClient.delete<GameModel>(this.apiURL + id)
+    return this.httpClient.delete<GameModel>(API + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -67,13 +65,11 @@ export class RestApiService {
   // Handle errors
   handleError(error) {
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      this.errorMessage = error.error.message;
+      // Throw client-side error
+      return throwError(error.error.message);
     } else {
-      // Get server-side error
-      this.errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      // Throw server-side error
+      return throwError(`Error Code: ${error.status}\nMessage: ${error.message}`);
     }
-    window.alert(this.errorMessage);
-    return throwError(this.errorMessage);
   }
 }

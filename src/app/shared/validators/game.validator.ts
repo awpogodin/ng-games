@@ -1,4 +1,4 @@
-import {GameModel} from '../models/game.model';
+import {GameModel} from '../../models/game.model';
 
 export class GameValidator {
 

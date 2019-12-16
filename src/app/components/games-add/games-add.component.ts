@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {GameModel} from '../../models/game.model';
-import {RestApiService} from '../../shared/rest-api.service';
+import {RestApiService} from '../../shared/services/rest-api.service';
 import {Router} from '@angular/router';
-import {GameValidator} from '../../shared/game.validator';
+import {GameValidator} from '../../shared/validators/game.validator';
 
 @Component({
   selector: 'app-game-form',
@@ -26,7 +26,6 @@ export class GamesAddComponent {
     };
     if (GameValidator.isValid(game)) {
       this.restApiService.addGame(game).subscribe(() => {
-        console.log('Created');
         this.router.navigate(['/games']);
       });
     } else {

@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {Unsubscribable} from 'rxjs';
 import {GameModel} from '../../models/game.model';
-import {GameValidator} from '../../shared/game-validator';
+import {GameValidator} from '../../shared/game.validator';
 
 @Component({
   selector: 'app-game-edit',

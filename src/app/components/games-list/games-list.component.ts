@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GameModel} from '../../models/game.model';
 import {RestApiService} from '../../shared/rest-api.service';
 import {ActivatedRoute} from '@angular/router';
@@ -9,7 +9,8 @@ import {Unsubscribable} from 'rxjs';
   templateUrl: './games-list.component.html',
   styleUrls: ['./games-list.component.scss']
 })
-export class GamesListComponent implements OnInit {
+export class GamesListComponent implements OnInit, OnDestroy {
+
   games: GameModel[] = [];
   private search: string;
 
@@ -23,6 +24,10 @@ export class GamesListComponent implements OnInit {
       this.search = params.get('search') || '';
       this.loadGames(this.search);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   deleteGame(id: string): void {

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {GameModel} from '../../models/game.model';
 import {RestApiService} from '../../shared/rest-api.service';
 import {Router} from '@angular/router';
-import {GameValidator} from '../../shared/game-validator';
+import {GameValidator} from '../../shared/game.validator';
 
 @Component({
   selector: 'app-game-form',

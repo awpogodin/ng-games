@@ -23,7 +23,6 @@ export class GameValidationService {
         observer.complete();
       } else {
         this.restApiService.getGames().subscribe(games => {
-          console.log('request...');
           this.games = games;
           const nameExist = this.games.find(g => g.name.toLocaleLowerCase() === newName.toLocaleLowerCase());
           if (nameExist) {

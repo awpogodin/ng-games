@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {GameCardComponent} from './components/game-card/game-card.component';
 import {GamesAddComponent} from './components/games-add/games-add.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {GamesListComponent} from './components/games-list/games-list.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -45,7 +45,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

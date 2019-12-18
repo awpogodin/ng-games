@@ -11,52 +11,75 @@
   box-sizing: border-box;
   width: 100%;
   margin: 15px 0;
+
+  &__field {
+    margin: 15px 0;
+  }
+
+  &__input {
+    display: block;
+    box-sizing: border-box;
+    margin: 5px 0;
+    width: 100%;
+    border: 1px solid #212121;
+    padding: 10px 15px;
+    color: #000;
+    background: #fff;
+    transition-duration: 0.5s;
+
+    &::placeholder {
+      color: #9e9e9e;
+    }
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(33, 33, 33, 0.5);
+    }
+
+    &:focus {
+      box-shadow: 0 0 20px rgba(33, 33, 33, 0.5);
+    }
+  }
+
+  &__submit-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    color: #2196F3;
+    border: 1px solid #2196F3;
+    background-color: #fff;
+    padding: 10px 20px;
+    transition: all linear 0.3s;
+
+    &:hover {
+      color: #fff;
+      background-color: #2196F3;
+      box-shadow: 0 0 20px rgba(33, 150, 243, .5);
+    }
+
+    &:disabled {
+      opacity: .3;
+      color: #2196F3;
+      background-color: #fff;
+      box-shadow: none;
+    }
+  }
+
+  &__error-msg {
+    font-size: 12px;
+    color: #f44336;
+  }
+
+  &__valid-msg {
+    font-size: 12px;
+    color: #4CAF50;
+  }
 }
 
-.game-form__input {
-  display: block;
-  box-sizing: border-box;
-  margin: 5px 0;
-  width: 100%;
-  border: 1px solid #212121;
-  padding: 10px 15px;
-  color: #000;
-  background: #fff;
-  transition-duration: 0.5s;
-
-  &::placeholder {
-    color: #9e9e9e;
-  }
-
-  &:hover {
-    box-shadow: 0 0 10px rgba(33, 33, 33, 0.5);
-  }
-
-  &:focus {
-    box-shadow: 0 0 20px rgba(33, 33, 33, 0.5);
-  }
+.input-invalid {
+  border: 1px solid #f44336;
 }
 
-.game-form__add-btn {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 10px 0;
-  color: #2196F3;
-  border: 1px solid #2196F3;
-  background-color: #fff;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all linear 0.3s;
-
-  &:hover {
-    color: #fff;
-    background-color: #2196F3;
-    box-shadow: 0 0 20px rgba(33, 150, 243, .5);
-  }
-}
-
-.game-form__error-msg {
-  text-align: center;
-  color: #f44336;
+.input-valid {
+  border: 1px solid #4CAF50;
 }

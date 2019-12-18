@@ -1,26 +1,72 @@
-<!--suppress HtmlFormInputWithoutLabel -->
-<div class="game-form">
-  <input
-    (keydown.enter)="addGame()"
-    [(ngModel)]="name"
-    class="game-form__input"
-    placeholder="Название игры"
-    type="text"
-  />
-  <input
-    (keydown.enter)="addGame()"
-    [(ngModel)]="developer"
-    class="game-form__input"
-    placeholder="Разработчик"
-    type="text"
-  />
-  <input
-    (keydown.enter)="addGame()"
-    [(ngModel)]="platforms"
-    class="game-form__input"
-    placeholder="Платформы"
-    type="text"
-  />
-  <p class="game-form__error-msg">{{ error }}</p>
-  <button (click)="addGame()" class="game-form__add-btn">Добавить</button>
-</div>
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="game-form">
+  <div class="game-form__field">
+    <label for="name">Название игры</label>
+    <input
+      [ngClass]="{ 'input-invalid': name.invalid && (name.dirty || name.touched),
+     'input-valid': name.valid}"
+      class="game-form__input"
+      formControlName="name"
+      id="name"
+      placeholder="Название игры"
+      type="text"
+    />
+    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+         class="game-form__error-msg">
+
+      <div *ngIf="name.errors.required">
+        Введите имя!
+      </div>
+      <div *ngIf="name.errors.minlength">
+        Длина должна быть не менее 2 символов!
+      </div>
+    </div>
+    <div *ngIf="name.valid" class="game-form__valid-msg">Выглядит хорошо!</div>
+  </div>
+  <div class="game-form__field">
+    <label for="developer">Разработчик</label>
+    <input
+      [ngClass]="{ 'input-invalid': developer.invalid && (developer.dirty || developer.touched),
+     'input-valid': developer.valid}"
+      class="game-form__input"
+      formControlName="developer"
+      id="developer"
+      placeholder="Разработчик"
+      type="text"
+    />
+    <div *ngIf="developer.invalid && (developer.dirty || developer.touched)"
+         class="game-form__error-msg">
+
+      <div *ngIf="developer.errors.required">
+        Введите разработчика!
+      </div>
+      <div *ngIf="developer.errors.minlength">
+        Длина должна быть не менее 2 символов!
+      </div>
+    </div>
+    <div *ngIf="developer.valid" class="game-form__valid-msg">Выглядит хорошо!</div>
+  </div>
+  <div class="game-form__field">
+    <label for="platforms">Платформы</label>
+    <input
+      [ngClass]="{ 'input-invalid': platforms.invalid && (platforms.dirty || platforms.touched),
+     'input-valid': platforms.valid}"
+      class="game-form__input"
+      formControlName="platforms"
+      id="platforms"
+      placeholder="Платформы"
+      type="text"
+    />
+    <div *ngIf="platforms.invalid && (platforms.dirty || platforms.touched)"
+         class="game-form__error-msg">
+
+      <div *ngIf="platforms.errors.required">
+        Введите платформы!
+      </div>
+      <div *ngIf="platforms.errors.minlength">
+        Длина должна быть не менее 2 символов!
+      </div>
+    </div>
+    <div *ngIf="platforms.valid" class="game-form__valid-msg">Выглядит хорошо!</div>
+  </div>
+  <button [disabled]="form.invalid" class="game-form__submit-btn" type="submit">Сохранить</button>
+</form>

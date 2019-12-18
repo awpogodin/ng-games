@@ -1,7 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {RestApiService} from '../../shared/services/rest-api.service';
 import {Router} from '@angular/router';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {GameModel} from '../../models/game.model';
+import {GameValidationService} from '../../shared/services/game-validation.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-game-form',
@@ -14,8 +17,7 @@ export class GamesAddComponent {
     name: ['', Validators.compose([
       Validators.required,
       Validators.minLength(2),
-
-    ])],
+    ]), this.nameAsyncValidator.bind(this)],
     developer: ['', Validators.compose([
       Validators.required,
       Validators.minLength(2)
@@ -24,9 +26,25 @@ export class GamesAddComponent {
       Validators.required,
       Validators.minLength(2)
     ])],
-  });
+  }, {updateOn: 'blur'});
+  private startGame;
 
-  constructor(public restApiService: RestApiService, public router: Router, private formBuilder: FormBuilder) {
+  constructor(
+    public restApiService: RestApiService,
+    public router: Router,
+    private formBuilder: FormBuilder,
+    private gameValidationService: GameValidationService) {
+  }
+
+  @Input()
+  set game(value: GameModel) {
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        value[key] = value[key].toString();
+      }
+    }
+    this.startGame = value;
+    this.form.patchValue(value);
   }
 
   get name(): AbstractControl {
@@ -43,26 +61,24 @@ export class GamesAddComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.restApiService.addGame(this.form.getRawValue()).subscribe(() => {
-        this.router.navigate(['/games']);
-      });
+      if (this.startGame) {
+        this.restApiService.updateGame(this.startGame.id, this.form.getRawValue()).subscribe(() => {
+          this.router.navigate(['/games']);
+        });
+      } else {
+        this.restApiService.addGame(this.form.getRawValue()).subscribe(() => {
+          this.router.navigate(['/games']);
+        });
+      }
     }
   }
 
-  // addGame(): void {
-  //   const game: GameModel = {
-  //     name: this.name,
-  //     developer: this.developer,
-  //     platforms: this.platforms
-  //   };
-  //   if (GameValidator.isValid(game)) {
-  //     this.restApiService.addGame(game).subscribe(() => {
-  //       this.router.navigate(['/games']);
-  //     });
-  //   } else {
-  //     this.error = 'Введены неверные данные';
-  //   }
-  //
-  // }
+  nameAsyncValidator(control: FormControl): Observable<ValidationErrors> | null {
+    if (this.startGame) {
+      return this.gameValidationService.validateName(control, this.startGame.name);
+    } else {
+      return this.gameValidationService.validateName(control, '');
+    }
+  }
 
 }

@@ -3,7 +3,7 @@
     <label for="name">Название игры</label>
     <input
       [ngClass]="{ 'input-invalid': name.invalid && (name.dirty || name.touched),
-     'input-valid': name.valid}"
+     'input-valid': name.valid && (name.dirty || name.touched)}"
       class="game-form__input"
       formControlName="name"
       id="name"
@@ -19,14 +19,17 @@
       <div *ngIf="name.errors.minlength">
         Длина должна быть не менее 2 символов!
       </div>
+      <div *ngIf="name.errors.gameExist">
+        Такая игра уже существует!
+      </div>
     </div>
-    <div *ngIf="name.valid" class="game-form__valid-msg">Выглядит хорошо!</div>
+    <div *ngIf="name.valid && (name.dirty || name.touched)" class="game-form__valid-msg">Выглядит хорошо!</div>
   </div>
   <div class="game-form__field">
     <label for="developer">Разработчик</label>
     <input
       [ngClass]="{ 'input-invalid': developer.invalid && (developer.dirty || developer.touched),
-     'input-valid': developer.valid}"
+     'input-valid': developer.valid && (developer.dirty || developer.touched)}"
       class="game-form__input"
       formControlName="developer"
       id="developer"
@@ -43,13 +46,15 @@
         Длина должна быть не менее 2 символов!
       </div>
     </div>
-    <div *ngIf="developer.valid" class="game-form__valid-msg">Выглядит хорошо!</div>
+    <div *ngIf="developer.valid && (developer.dirty || developer.touched)" class="game-form__valid-msg">Выглядит
+      хорошо!
+    </div>
   </div>
   <div class="game-form__field">
     <label for="platforms">Платформы</label>
     <input
       [ngClass]="{ 'input-invalid': platforms.invalid && (platforms.dirty || platforms.touched),
-     'input-valid': platforms.valid}"
+     'input-valid': platforms.valid && (platforms.dirty || platforms.touched) }"
       class="game-form__input"
       formControlName="platforms"
       id="platforms"
@@ -66,7 +71,9 @@
         Длина должна быть не менее 2 символов!
       </div>
     </div>
-    <div *ngIf="platforms.valid" class="game-form__valid-msg">Выглядит хорошо!</div>
+    <div *ngIf="platforms.valid && (platforms.dirty || platforms.touched)" class="game-form__valid-msg">Выглядит
+      хорошо!
+    </div>
   </div>
   <button [disabled]="form.invalid" class="game-form__submit-btn" type="submit">Сохранить</button>
 </form>

@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {Unsubscribable} from 'rxjs';
 import {GameModel} from '../../models/game.model';
-import {GameValidator} from '../../shared/validators/game.validator';
 
 @Component({
   selector: 'app-game-edit',
@@ -40,22 +39,6 @@ export class GameEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  updateGame(): void {
-    const game: GameModel = {
-      name: this.name,
-      developer: this.developer,
-      platforms: this.platforms
-    };
-    if (GameValidator.isValid(game)) {
-      this.restApiService.updateGame(this.gameId, game).subscribe(() => {
-        this.router.navigate(['/games']);
-      });
-    } else {
-      this.error = 'Введены неверные данные';
-    }
-
   }
 
 }

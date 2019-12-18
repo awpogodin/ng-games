@@ -1,29 +1,7 @@
 <!--suppress HtmlFormInputWithoutLabel -->
 <div *ngIf="game; else errorTemplate" class="game-form">
   <h2 class="game-form__title">Редактирование</h2>
-  <input
-    (keydown.enter)="updateGame()"
-    [(ngModel)]="name"
-    class="game-form__input"
-    placeholder="Название игры"
-    type="text"
-  />
-  <input
-    (keydown.enter)="updateGame()"
-    [(ngModel)]="developer"
-    class="game-form__input"
-    placeholder="Разработчик"
-    type="text"
-  />
-  <input
-    (keydown.enter)="updateGame()"
-    [(ngModel)]="platforms"
-    class="game-form__input"
-    placeholder="Платформы"
-    type="text"
-  />
-  <p class="game-form__error-msg">{{ error }}</p>
-  <button (click)="updateGame()" class="game-form__update-btn">Обновить</button>
+  <app-game-form [game]="game"></app-game-form>
 </div>
 <ng-template #errorTemplate>
   <p class="error-text">Игра не найдена</p>

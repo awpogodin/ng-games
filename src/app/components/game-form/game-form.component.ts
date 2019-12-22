@@ -6,6 +6,15 @@ import {GameModel} from '../../models/game.model';
 import {GameValidationService} from '../../shared/services/game-validation.service';
 import {Observable} from 'rxjs';
 
+function gameFieldsToString(game: GameModel) {
+  for (const key in game) {
+    if (game.hasOwnProperty(key)) {
+      game[key] = game[key].toString();
+    }
+  }
+  return game;
+}
+
 @Component({
   selector: 'app-game-form',
   templateUrl: './game-form.component.html',
@@ -27,24 +36,20 @@ export class GameFormComponent {
       Validators.minLength(2)
     ])],
   }, {updateOn: 'blur'});
-  private startGame;
+  private initGame: GameModel;
 
   constructor(
-    public restApiService: RestApiService,
-    public router: Router,
+    private restApiService: RestApiService,
+    private router: Router,
     private formBuilder: FormBuilder,
     private gameValidationService: GameValidationService) {
   }
 
   @Input()
   set game(value: GameModel) {
-    for (const key in value) {
-      if (value.hasOwnProperty(key)) {
-        value[key] = value[key].toString();
-      }
-    }
-    this.startGame = value;
-    this.form.patchValue(value);
+    const game = gameFieldsToString(value);
+    this.initGame = game;
+    this.form.patchValue(game);
   }
 
   get name(): AbstractControl {
@@ -61,8 +66,8 @@ export class GameFormComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      if (this.startGame) {
-        this.restApiService.updateGame(this.startGame.id, this.form.getRawValue()).subscribe(() => {
+      if (this.initGame) {
+        this.restApiService.updateGame(this.initGame.id, this.form.getRawValue()).subscribe(() => {
           this.router.navigate(['/games']);
         });
       } else {
@@ -74,8 +79,8 @@ export class GameFormComponent {
   }
 
   nameAsyncValidator(control: FormControl): Observable<ValidationErrors> | null {
-    if (this.startGame) {
-      return this.gameValidationService.validateName(control, this.startGame.name);
+    if (this.initGame) {
+      return this.gameValidationService.validateName(control, this.initGame.name);
     } else {
       return this.gameValidationService.validateName(control, '');
     }

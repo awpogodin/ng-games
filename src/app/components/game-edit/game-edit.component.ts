@@ -13,12 +13,6 @@ import {GameModel} from '../../models/game.model';
 export class GameEditComponent implements OnInit, OnDestroy {
 
   game: GameModel;
-  name = '';
-  developer = '';
-  platforms = '';
-  error = '';
-
-  private gameId: string;
 
   private subscription: Unsubscribable;
 
@@ -30,10 +24,6 @@ export class GameEditComponent implements OnInit, OnDestroy {
       switchMap(params => this.restApiService.getGame(params.id))
     ).subscribe(game => {
       this.game = game;
-      this.name = game.name;
-      this.developer = game.developer.toString();
-      this.platforms = game.platforms.toString();
-      this.gameId = this.route.snapshot.params.id;
     });
   }
 

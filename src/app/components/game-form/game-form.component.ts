@@ -8,10 +8,10 @@ import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-game-form',
-  templateUrl: './games-add.component.html',
-  styleUrls: ['./games-add.component.scss']
+  templateUrl: './game-form.component.html',
+  styleUrls: ['./game-form.component.scss']
 })
-export class GamesAddComponent {
+export class GameFormComponent {
 
   form: FormGroup = this.formBuilder.group({
     name: ['', Validators.compose([

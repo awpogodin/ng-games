@@ -38,6 +38,14 @@ export class RestApiService {
       );
   }
 
+  getGameByName(name: string): Observable<GameModel[]> {
+    return this.httpClient.get<GameModel[]>(API + `?name=${name}`)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
   addGame(game: GameModel): Observable<GameModel> {
     return this.httpClient.post<GameModel>(API, JSON.stringify(game), this.httpOptions)
       .pipe(

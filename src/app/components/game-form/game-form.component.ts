@@ -7,12 +7,13 @@ import {GameValidationService} from '../../shared/services/game-validation.servi
 import {Observable} from 'rxjs';
 
 function gameFieldsToString(game: GameModel) {
-  for (const key in game) {
-    if (game.hasOwnProperty(key)) {
-      game[key] = game[key].toString();
+  const modifiedGame = game;
+  for (const key in modifiedGame) {
+    if (modifiedGame.hasOwnProperty(key)) {
+      modifiedGame[key] = modifiedGame[key].toString();
     }
   }
-  return game;
+  return modifiedGame;
 }
 
 @Component({
